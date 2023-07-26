@@ -1,5 +1,5 @@
 import Food from '../../models/Food'
-import Product from '../Product'
+import Product from '../Restaurant'
 import { Container, List } from './style'
 
 export type Props = {
@@ -8,10 +8,11 @@ export type Props = {
   foods: Food[]
 }
 
-const RestaurantList = ({ foods }: Props) => {
+const RestaurantsList = ({ foods }: Props) => {
   return (
     <Container>
       <div className="container">
+        {/* <h2>{title}</h2> */}
         <List>
           {foods.map((foods) => {
             return (
@@ -21,6 +22,7 @@ const RestaurantList = ({ foods }: Props) => {
                 description={foods.description}
                 infos={foods.infos}
                 image={foods.image}
+                nota={foods.nota}
               />
             )
           })}
@@ -30,4 +32,4 @@ const RestaurantList = ({ foods }: Props) => {
   )
 }
 
-export default RestaurantList
+export default RestaurantsList

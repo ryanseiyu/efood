@@ -1,11 +1,10 @@
 // import Banner from '../../components/Banner'
-import ProductsList from '../../components/ProductsList'
+import RestaurantsList from '../../components/RestaurantsList'
 import Food from '../../models/Food'
 
 import imagem from '../../assets/images/imagem.png'
 import imagem2 from '../../assets/images/image 1.png'
-// import zelda from '../../assets/images/zelda.png'
-// import starwars from '../../assets/images/star_wars.png'
+import Header from '../../components/Header'
 
 const promocoes: Food[] = [
   {
@@ -68,7 +67,8 @@ const promocoes: Food[] = [
 const Home = () => (
   <>
     {/* <Banner /> */}
-    <ProductsList foods={promocoes} title="Promoções" background="gray" />
+    <Header type="headerHome" />
+    <RestaurantsList foods={promocoes} title="Promoções" background="gray" />
   </>
 )
 

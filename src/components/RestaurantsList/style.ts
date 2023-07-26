@@ -8,14 +8,10 @@ export const Container = styled.section<Omit<Props, 'title' | 'foods'>>`
 
 export const List = styled.ul`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 32px;
-  justify-items: center;
-  margin-bottom: 120px;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 80px;
 `
 export const Title = styled.h2`
   font-size: 18px;
   font-weight: bold;
 `
-
-//
