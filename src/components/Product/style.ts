@@ -119,6 +119,10 @@ export const InfoContainer = styled.div`
     line-height: normal;
   }
 
+  #adicionar:hover {
+    cursor: pointer;
+  }
+
   #fechar {
     border: none;
     background-color: #e66767;

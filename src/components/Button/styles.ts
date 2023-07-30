@@ -73,4 +73,8 @@ export const ButtonProductLink = styled.button`
   text-decoration: none;
   padding: 0px 0;
   height: 26px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `

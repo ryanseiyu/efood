@@ -30,12 +30,13 @@ export const Container = styled.div`
   height: 58px;
   margin-top: 42px;
 
-
   img {
     align-self: center;
     outline: 1px solid ${cores.fundo};
-z    /* margin-left: 341px;
+    /* margin-left: 341px;
     margin-right: 193px; */
+    margin-left: 88px;
+    border: none;
   }
 `
 
@@ -43,7 +44,7 @@ export const HeaderBar = styled.header`
   height: 163px;
   display: flex;
   justify-content: center;
-  padding-left: 88px;
+  /* padding-left: 88px; */
 `
 
 export const Slogan = styled.div`
