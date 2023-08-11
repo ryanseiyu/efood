@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom'
 
 import Home from './pages/Home'
-import Categories from './pages/Categories'
+import MenuPage from './pages/MenuPage'
 
 const Rotas = () => (
   <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="/categories" element={<Categories />} />
+    <Route path="/MenuPage/:id" element={<MenuPage />} />
   </Routes>
 )
 

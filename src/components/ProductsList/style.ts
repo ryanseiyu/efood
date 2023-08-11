@@ -1,7 +1,6 @@
 import styled from 'styled-components'
-import { Props } from '.'
 
-export const Container = styled.section<Omit<Props, 'title' | 'foods'>>`
+export const Container = styled.section`
   padding: 80px 0;
   background-color: #fff8f2;
 `
@@ -17,5 +16,3 @@ export const Title = styled.h2`
   font-size: 18px;
   font-weight: bold;
 `
-
-//

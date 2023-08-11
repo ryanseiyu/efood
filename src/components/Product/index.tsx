@@ -2,52 +2,66 @@ import {
   Card,
   Descricao,
   Titulo,
-  Container,
   ImgContainer,
   TxtContainer,
   ModalContainer,
   ModalImg,
-  InfoContainer
+  InfoContainer,
+  TituloContainer
 } from './style'
 import Button from '../Button'
 import Modal from 'react-modal'
 import React from 'react'
-import pizza from '../../assets/images/pizza.png'
 import fechar from '../../assets/images/fechar.png'
 
 Modal.setAppElement('#root')
 
 type Props = {
-  title: string
-  description: string
-  infos: string[]
-  image: string
+  foto: string
+  preco: number
+  id: number
+  nome: string
+  descricao: string
+  porcao: string
 }
 
-const Product = ({ title, description, image }: Props) => {
+export const formataPreco = (preco = 0) => {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(preco)
+}
+
+const Product = ({ nome, descricao, foto, porcao, preco }: Props) => {
   const [modalIsOpen, setIsOpen] = React.useState(false)
 
-  // Função que abre a modal
   function abrirModal() {
     setIsOpen(true)
   }
 
-  // Função que fecha a modal
   function fecharModal() {
     setIsOpen(false)
+  }
+
+  function shortenText(text: string, maxLength: number): string {
+    if (text.length <= maxLength) {
+      return text
+    }
+    const shortenedText = text.slice(0, maxLength) + '...'
+    return shortenedText
   }
 
   return (
     <Card>
       <ImgContainer>
-        <img src={image} alt={title} />
+        <img src={foto} alt={descricao} />
       </ImgContainer>
       <TxtContainer>
-        <Container>
-          <Titulo>{title}</Titulo>
-        </Container>
+        <TituloContainer>
+          <Titulo>{shortenText(`${nome}`, 23)}</Titulo>
+        </TituloContainer>
 
-        <Descricao>{description}</Descricao>
+        <Descricao>{shortenText(`${descricao}`, 160)}</Descricao>
       </TxtContainer>
 
       <Modal
@@ -74,26 +88,19 @@ const Product = ({ title, description, image }: Props) => {
       >
         <ModalContainer>
           <ModalImg>
-            <img src={pizza} alt="" />
+            <img src={foto} alt="" />
           </ModalImg>
           <InfoContainer>
-            <p>Pizza Marguerita</p>
+            <p>{nome}</p>
             <div>
-              A pizza Margherita é uma pizza clássica da culinária italiana,
-              reconhecida por sua simplicidade e sabor inigualável. Ela é feita
-              com uma base de massa fina e crocante, coberta com molho de tomate
-              fresco, queijo mussarela de alta qualidade, manjericão fresco e
-              azeite de oliva extra-virgem. A combinação de sabores é perfeita,
-              com o molho de tomate suculento e ligeiramente ácido, o queijo
-              derretido e cremoso e as folhas de manjericão frescas, que
-              adicionam um toque de sabor herbáceo. É uma pizza simples, mas
-              deliciosa, que agrada a todos os paladares e é uma ótima opção
-              para qualquer ocasião.
+              {descricao}
               <br />
               <br />
-              Serve: de 2 a 3 pessoas
+              {porcao}
             </div>
-            <button id="adicionar">Adicionar ao carrinho - R$60,90</button>
+            <button id="adicionar">
+              Adicionar ao carrinho - {formataPreco(preco)}
+            </button>
             <button id="fechar" onClick={fecharModal}>
               <img src={fechar} alt="Botão" />
             </button>

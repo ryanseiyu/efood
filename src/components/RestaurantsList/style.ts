@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 import { Props } from '.'
 
-export const Container = styled.section<Omit<Props, 'title' | 'foods'>>`
+export const ContainerRestaurant = styled.section<
+  Omit<Props, 'title' | 'restaurants'>
+>`
   padding: 80px 0;
   background-color: #fff8f2;
 `

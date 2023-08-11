@@ -27,7 +27,7 @@ export const Infos = styled.div`
   color: #ffebd9;
 `
 
-export const Container = styled.div`
+export const TituloContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,6 +50,8 @@ export const Descricao = styled.p`
 export const ImgContainer = styled.div`
   width: 95%;
   margin: 0px 8px;
+  position: relative;
+  padding-top: 2;
   height: 184px;
   justify-content: center;
   align-items: center;
@@ -57,13 +59,19 @@ export const ImgContainer = styled.div`
   overflow: hidden;
   border: 1px solid ${cores.rosa};
   border-bottom: none;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    max-height: 170px;
+  }
 `
 
 export const TxtContainer = styled.div`
   border: 1px solid ${cores.rosa};
   border-top: none;
   background-color: ${cores.rosa};
-  width: 267px;
+  width: 320px;
   margin-bottom: 0;
 `
 
@@ -105,7 +113,7 @@ export const InfoContainer = styled.div`
   }
 
   #adicionar {
-    width: 218px;
+    width: 230px;
     height: 24px;
     flex-shrink: 0;
     border: none;

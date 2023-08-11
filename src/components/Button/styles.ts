@@ -52,7 +52,6 @@ export const ButtonLink = styled(Link)`
   }
 `
 
-// ButtonProductLink fills 90% of the Card and is centered
 export const ButtonProductLink = styled.button`
   display: flex;
   justify-content: center;

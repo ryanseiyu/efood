@@ -73,6 +73,9 @@ export const Descricao = styled.p`
 
 export const ImgContainer = styled.div`
   height: 216px;
+  img {
+    object-fit: cover;
+  }
 `
 
 export const TxtContainer = styled.div`
