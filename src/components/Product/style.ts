@@ -73,6 +73,7 @@ export const ImgContainer = styled.div`
 
   img {
     width: 100%;
+    height: fit-content;
     object-fit: cover;
     max-height: 170px;
   }
@@ -106,8 +107,8 @@ export const ModalContainer = styled.div`
   position: absolute;
   display: flex;
   z-index: 1;
-  width: 50%;
-  height: 37%;
+  width: 75%;
+  height: fit-content;
   background-color: ${cores.rosa};
   @media (max-width: ${breakpoints.desktop}) {
     flex-direction: column;
