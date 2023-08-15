@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
+import { ButtonLink } from '../Button/styles'
 
 export const Card = styled.div`
   background-color: #ffffff;
@@ -9,7 +10,7 @@ export const Card = styled.div`
   color: ${cores.rosa};
 
   img {
-    width: 472px;
+    width: 100%;
     height: 216px;
   }
 `
@@ -62,6 +63,7 @@ export const Rating = styled.div`
 export const Descricao = styled.p`
   display: block;
   margin-left: 8px;
+  margin-right: 8px;
   color: ${cores.rosa};
   font-family: Roboto;
   font-size: 14px;
@@ -81,4 +83,18 @@ export const ImgContainer = styled.div`
 export const TxtContainer = styled.div`
   border: 1px solid ${cores.rosa};
   border-top: none;
+  height: 206px;
+
+  > ${ButtonLink} {
+    position: absolute;
+    bottom: 0;
+  }
+
+  @media (max-width: ${breakpoints.desktop}) {
+    height: 180px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    height: 270px;
+  }
 `

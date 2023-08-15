@@ -41,7 +41,7 @@ const Restaurant = ({ id, title, description, infos, image, nota }: Props) => {
           </Rating>
         </Container>
 
-        <Descricao>{description}</Descricao>
+        <Descricao>{description} </Descricao>
         <Button to={`/MenuPage/${id}`} title="Saiba mais" type="link">
           Saiba mais
         </Button>

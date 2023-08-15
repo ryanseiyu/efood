@@ -24,6 +24,10 @@ const RestaurantsList = ({ restaurants }: Props) => {
     return tags
   }
 
+  if (!restaurants) {
+    return <div>Carregando...</div>
+  }
+
   return (
     <ContainerRestaurant>
       <div className="container">

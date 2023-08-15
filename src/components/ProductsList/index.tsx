@@ -22,6 +22,7 @@ const ProductList = ({ menu }: Props) => {
                 nome={menu.nome}
                 descricao={menu.descricao}
                 porcao={menu.porcao}
+                menu={menu}
               />
             </li>
           ))}

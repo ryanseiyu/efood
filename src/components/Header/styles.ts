@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 
 export const ContainerHome = styled.div`
   display: flex;
@@ -37,6 +37,18 @@ export const Container = styled.div`
     margin-right: 193px; */
     margin-left: 88px;
     border: none;
+
+    @media (max-width: ${breakpoints.desktop}) {
+      margin: 8px;
+    }
+  }
+
+  @media (max-width: ${breakpoints.desktop}) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 `
 
@@ -66,6 +78,10 @@ export const Text = styled.p`
   font-weight: 900;
   line-height: normal;
   text-wrap: nowrap;
+
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 export const ImgHeader = styled.div`
@@ -92,6 +108,10 @@ export const TextDiv = styled.div`
   font-weight: 100;
   line-height: normal;
   filter: brightness(0.9);
+
+  @media (max-width: ${breakpoints.desktop}) {
+    left: 50px;
+  }
 `
 
 export const RestaurantDiv = styled.div`
@@ -104,4 +124,16 @@ export const RestaurantDiv = styled.div`
   font-style: normal;
   font-weight: 900;
   line-height: normal;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    top: 180px;
+    left: 50px;
+  }
+`
+
+export const HeaderBarContainer = styled.div`
+  @media (max-width: ${breakpoints.desktop}) {
+    width: 100vw;
+    overflow: hidden;
+  }
 `

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 
 export const Card = styled.div`
   background-color: ${cores.rosa};
@@ -8,6 +8,12 @@ export const Card = styled.div`
   color: ${cores.rosa};
   width: 320px;
   height: 370px;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    width: 100%;
+    height: 80%;
+    overflow: hidden;
+  }
 `
 
 export const Titulo = styled.h3`
@@ -45,6 +51,11 @@ export const Descricao = styled.p`
   font-weight: 400;
   line-height: 22px;
   margin-bottom: 16px;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    width: 90%;
+    overflow: hidden;
+  }
 `
 
 export const ImgContainer = styled.div`
@@ -75,8 +86,43 @@ export const TxtContainer = styled.div`
   margin-bottom: 0;
 `
 
+export const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  &.visivel {
+    display: flex;
+  }
+`
+
 export const ModalContainer = styled.div`
+  position: absolute;
   display: flex;
+  z-index: 1;
+  width: 50%;
+  height: 37%;
+  background-color: ${cores.rosa};
+  @media (max-width: ${breakpoints.desktop}) {
+    flex-direction: column;
+    width: 90%;
+    height: fit-content;
+  }
+`
+
+export const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
 `
 
 export const ModalImg = styled.div`
@@ -86,10 +132,24 @@ export const ModalImg = styled.div`
     width: 280px;
     height: 280px;
     object-fit: cover;
+    margin: 32px;
+    @media (max-width: ${breakpoints.tablet}) {
+      width: 80%;
+      height: 80%;
+    }
+
+    @media (max-width: ${breakpoints.desktop}) and (min-width: ${breakpoints.tablet}) {
+      width: 90%;
+    }
   }
 `
 
 export const InfoContainer = styled.div`
+  @media (max-width: ${breakpoints.desktop}) {
+    margin-left: 32px;
+    height: 100%;
+  }
+
   p {
     display: flex;
     color: #fff;
@@ -100,6 +160,7 @@ export const InfoContainer = styled.div`
     font-weight: 900;
     line-height: normal;
     margin-bottom: 16px;
+    margin-top: 32px;
   }
 
   div {
@@ -110,6 +171,11 @@ export const InfoContainer = styled.div`
     font-weight: 400;
     line-height: 22px; /* 157.143% */
     margin-bottom: 16px;
+    margin-right: 32px;
+
+    @media (max-width: ${breakpoints.desktop}) and (min-width: ${breakpoints.tablet}) {
+      font-size: 18px;
+    }
   }
 
   #adicionar {
@@ -125,6 +191,16 @@ export const InfoContainer = styled.div`
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      width: 80%;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: ${breakpoints.desktop}) and (min-width: ${breakpoints.tablet}) {
+      width: 90%;
+      margin-bottom: 24px;
+    }
   }
 
   #adicionar:hover {
@@ -141,6 +217,10 @@ export const InfoContainer = styled.div`
 
     img {
       width: 16px;
+    }
+
+    &:hover {
+      cursor: pointer;
     }
   }
 `

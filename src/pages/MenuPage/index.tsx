@@ -1,7 +1,7 @@
 import ProductsList from '../../components/ProductsList'
 import Header from '../../components/Header'
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useGetMenuQuery, useGetRestaurantIdQuery } from '../../services/api'
 
 export type MenuItemsType = {
   foto: string
@@ -19,22 +19,24 @@ export type MenuType = {
 }
 
 const MenuPage = () => {
-  const [menuState, setMenuState] = useState<MenuItemsType[]>([])
-  const [restaurantState, setRestaurantState] = useState<MenuType>(
-    {} as MenuType
-  )
+  // const [menuState, setMenuState] = useState<MenuItemsType[]>([])
+  // const [restaurantState, setRestaurantState] = useState<MenuType>(
+  //   {} as MenuType
+  // )
   const { id } = useParams()
+  const { data: menuState } = useGetMenuQuery(id!)
+  const { data: restaurantState } = useGetRestaurantIdQuery(id!)
 
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setMenuState(res.cardapio)
-        setRestaurantState(res)
-      })
-  }, [id])
+  // useEffect(() => {
+  //   fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       setMenuState(res.cardapio)
+  //       setRestaurantState(res)
+  //     })
+  // }, [id])
 
-  if (!menuState) {
+  if (!menuState || !restaurantState) {
     return <h3>Carregando...</h3>
   }
 

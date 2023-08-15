@@ -8,11 +8,15 @@ import {
   ContainerHome,
   ImgHeader,
   TextDiv,
-  RestaurantDiv
+  RestaurantDiv,
+  HeaderBarContainer
 } from './styles'
 import logo from '../../assets/images/logo.svg'
 import vector from '../../assets/images/Vector.png'
 import { MenuType } from '../../pages/MenuPage'
+import { open } from '../../store/reducers/cart'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootReducer } from '../../store'
 
 type Props = {
   type: 'headerHome' | 'headerProduct'
@@ -20,6 +24,13 @@ type Props = {
 }
 
 const Header = ({ type, restaurant }: Props) => {
+  const dispatch = useDispatch()
+  const { items } = useSelector((state: RootReducer) => state.cart)
+
+  const openCart = () => {
+    dispatch(open())
+  }
+
   if (type === 'headerHome') {
     return (
       <HeaderBarHome style={{ backgroundImage: `url(${vector})` }}>
@@ -39,22 +50,26 @@ const Header = ({ type, restaurant }: Props) => {
     }
 
     return (
-      <>
+      <HeaderBarContainer>
         <HeaderBar style={{ backgroundImage: `url(${vector})` }}>
           <Container>
             <Text>Restaurantes</Text>
             <Link to="/">
               <img src={logo} alt="EPLAY" />
             </Link>
-            <Text>0 produto(s) no carrinho</Text>
+            <Text onClick={openCart}>
+              {items.length} produto(s) no carrinho
+            </Text>
           </Container>
         </HeaderBar>
         <ImgHeader>
-          <img src={restaurant.capa} alt="Macarrão" />
-          <TextDiv>{restaurant.tipo}</TextDiv>
+          <img src={restaurant.capa} alt="Imagem header" />
+          <TextDiv>
+            {restaurant.tipo.charAt(0).toUpperCase() + restaurant.tipo.slice(1)}
+          </TextDiv>
           <RestaurantDiv>{restaurant.titulo}</RestaurantDiv>
         </ImgHeader>
-      </>
+      </HeaderBarContainer>
     )
   }
 }

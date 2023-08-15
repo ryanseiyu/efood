@@ -11,7 +11,7 @@ type Props = {
 const Button = ({ type, title, to, onClick, children }: Props) => {
   if (type === 'button') {
     return (
-      <ButtonContainer type="button" title={title} onClick={onClick}>
+      <ButtonContainer type="button" title={title}>
         {children}
       </ButtonContainer>
     )

@@ -1,9 +1,8 @@
-// import Banner from '../../components/Banner'
+import { useGetRestaurantsQuery } from '../../services/api'
 import RestaurantsList from '../../components/RestaurantsList'
 
 import Header from '../../components/Header'
-import { useEffect, useState } from 'react'
-import { MenuType } from '../MenuPage'
+import { MenuItemsType } from '../MenuPage'
 
 export type RestaurantType = {
   infos: string[]
@@ -14,26 +13,21 @@ export type RestaurantType = {
   avaliacao: number
   descricao: string
   capa: string
-  cardapio: MenuType[]
+  cardapio: MenuItemsType[]
 }
 
 const Home = () => {
-  const [restaurantesState, setRestaurantesState] = useState<RestaurantType[]>(
-    []
-  )
+  const { data: restaurantesState, isLoading } = useGetRestaurantsQuery()
 
-  useEffect(() => {
-    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
-      .then((res) => res.json())
-      .then((res) => setRestaurantesState(res))
-  }, [])
-
-  return (
-    <>
-      <Header type="headerHome" />
-      <RestaurantsList restaurants={restaurantesState} title="Restaurantes" />
-    </>
-  )
+  if (restaurantesState) {
+    return (
+      <>
+        <Header type="headerHome" />
+        <RestaurantsList restaurants={restaurantesState} title="Restaurantes" />
+      </>
+    )
+  }
+  return <div>Carregando...</div>
 }
 
 export default Home

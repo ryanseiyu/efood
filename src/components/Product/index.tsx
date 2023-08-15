@@ -7,14 +7,16 @@ import {
   ModalContainer,
   ModalImg,
   InfoContainer,
-  TituloContainer
+  TituloContainer,
+  Modal,
+  Overlay
 } from './style'
 import Button from '../Button'
-import Modal from 'react-modal'
 import React from 'react'
 import fechar from '../../assets/images/fechar.png'
-
-Modal.setAppElement('#root')
+import { useDispatch } from 'react-redux'
+import { add, open } from '../../store/reducers/cart'
+import { MenuItemsType } from '../../pages/MenuPage'
 
 type Props = {
   foto: string
@@ -23,6 +25,7 @@ type Props = {
   nome: string
   descricao: string
   porcao: string
+  menu: MenuItemsType
 }
 
 export const formataPreco = (preco = 0) => {
@@ -32,61 +35,48 @@ export const formataPreco = (preco = 0) => {
   }).format(preco)
 }
 
-const Product = ({ nome, descricao, foto, porcao, preco }: Props) => {
-  const [modalIsOpen, setIsOpen] = React.useState(false)
-
-  function abrirModal() {
-    setIsOpen(true)
+export function shortenText(text: string, maxLength: number): string {
+  if (text.length <= maxLength) {
+    return text
   }
+  const shortenedText = text.slice(0, maxLength) + '...'
+  return shortenedText
+}
 
-  function fecharModal() {
-    setIsOpen(false)
-  }
+const Product = ({ nome, descricao, foto, porcao, preco, menu }: Props) => {
+  const [modalIsOpen, setModalIsOpen] = React.useState(false)
+  const dispatch = useDispatch()
 
-  function shortenText(text: string, maxLength: number): string {
-    if (text.length <= maxLength) {
-      return text
-    }
-    const shortenedText = text.slice(0, maxLength) + '...'
-    return shortenedText
+  const addToCart = () => {
+    dispatch(add(menu))
+    dispatch(open())
+    setModalIsOpen(false)
   }
 
   return (
-    <Card>
-      <ImgContainer>
-        <img src={foto} alt={descricao} />
-      </ImgContainer>
-      <TxtContainer>
-        <TituloContainer>
-          <Titulo>{shortenText(`${nome}`, 23)}</Titulo>
-        </TituloContainer>
+    <>
+      <Card>
+        <ImgContainer>
+          <img src={foto} alt={descricao} />
+        </ImgContainer>
+        <TxtContainer>
+          <TituloContainer>
+            <Titulo>{shortenText(`${nome}`, 23)}</Titulo>
+          </TituloContainer>
+          <Descricao>{shortenText(`${descricao}`, 160)}</Descricao>
+        </TxtContainer>
 
-        <Descricao>{shortenText(`${descricao}`, 160)}</Descricao>
-      </TxtContainer>
+        <Button
+          onClick={() => setModalIsOpen(true)}
+          title="Modal"
+          type="product-link"
+        >
+          Adicionar ao carrinho
+        </Button>
+      </Card>
 
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={fecharModal}
-        contentLabel="Modal Teste"
-        style={{
-          overlay: {
-            backgroundColor: 'rgba(0, 0 ,0, 0.8)'
-          },
-          content: {
-            border: '1px solid green',
-            background: '#E66767',
-            borderRadius: '0',
-            borderColor: '#E66767',
-            height: '344px',
-            width: '1024px',
-            padding: '20px',
-            marginTop: '200px',
-            left: '50%',
-            transform: 'translateX(-50%)'
-          }
-        }}
-      >
-        <ModalContainer>
+      <Modal className={modalIsOpen ? 'visivel' : ''}>
+        <ModalContainer className="container">
           <ModalImg>
             <img src={foto} alt="" />
           </ModalImg>
@@ -98,20 +88,17 @@ const Product = ({ nome, descricao, foto, porcao, preco }: Props) => {
               <br />
               {porcao}
             </div>
-            <button id="adicionar">
+            <button id="adicionar" onClick={addToCart}>
               Adicionar ao carrinho - {formataPreco(preco)}
             </button>
-            <button id="fechar" onClick={fecharModal}>
+            <button id="fechar" onClick={() => setModalIsOpen(false)}>
               <img src={fechar} alt="Botão" />
             </button>
           </InfoContainer>
         </ModalContainer>
+        <Overlay onClick={() => setModalIsOpen(false)} />
       </Modal>
-
-      <Button onClick={abrirModal} title="Modal" type="product-link">
-        Adicionar ao carrinho
-      </Button>
-    </Card>
+    </>
   )
 }
 
