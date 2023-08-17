@@ -5,7 +5,8 @@ export const cores = {
   branco: '#FFFFFF',
   fundo: '#FFF8F2',
   button: '#FFEBD9',
-  cinza: '#D3D3D3'
+  cinza: '#D3D3D3',
+  label: '#FFEBD9'
 }
 
 export const breakpoints = {

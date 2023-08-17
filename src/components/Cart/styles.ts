@@ -34,7 +34,7 @@ export const Sidebar = styled.aside`
   width: 100%;
 
   button {
-    background-color: ${cores.branco};
+    background-color: ${cores.label};
     border: none;
     color: ${cores.rosa};
     text-align: center;
@@ -54,7 +54,7 @@ export const Prices = styled.p`
   display: flex;
   font-weight: 700;
   font-size: 14px;
-  color: ${cores.branco};
+  color: ${cores.label};
   margin-bottom: 24px;
   margin-top: 40px;
   justify-content: space-between;
@@ -66,6 +66,7 @@ export const CartItem = styled.li`
   padding: 8px;
   position: relative;
   margin-bottom: 16px;
+  background-color: ${cores.label};
 
   > img {
     height: 80px;

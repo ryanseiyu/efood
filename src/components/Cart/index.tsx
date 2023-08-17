@@ -4,11 +4,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
 import { close, remove } from '../../store/reducers/cart'
 import { formataPreco } from '../Product'
+import { openDelivery } from '../../store/reducers/delivery'
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
 
   const dispatch = useDispatch()
+
+  const abrirDelivery = () => {
+    dispatch(openDelivery())
+  }
 
   const closeCart = () => {
     dispatch(close())
@@ -46,7 +51,7 @@ const Cart = () => {
           <span>Valor total</span>
           <span>{formataPreco(getTotalPrice())}</span>
         </Prices>
-        <button>Continuar com a entrega</button>
+        <button onClick={abrirDelivery}>Continuar com a entrega</button>
       </Sidebar>
     </CartContainer>
   )
