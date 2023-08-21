@@ -48,25 +48,42 @@ const Order = () => {
   }
 
   const abrirPayment = () => {
-    const field = ['nome', 'endereco', 'cidade', 'cep', 'numero', 'complemento']
-    const error: string[] = []
+    const field = ['nome', 'endereco', 'cidade', 'cep', 'numero']
+    let error: string[] = []
+    const nomeInput = document.getElementById('nome') as HTMLInputElement
+    const enderecoInput = document.getElementById(
+      'endereco'
+    ) as HTMLInputElement
+    const cidadeInput = document.getElementById('cidade') as HTMLInputElement
+    const cepInput = document.getElementById('cep') as HTMLInputElement
+    const numeroInput = document.getElementById('numero') as HTMLInputElement
     if (
-      checkInputError('nome') ||
-      checkInputError('endereco') ||
-      checkInputError('cidade') ||
-      checkInputError('cep') ||
-      checkInputError('numero') ||
-      checkInputError('complemento')
+      nomeInput.value === '' ||
+      enderecoInput.value === '' ||
+      cidadeInput.value === '' ||
+      cepInput.value === '' ||
+      numeroInput.value === ''
     ) {
-      for (let i = 0; i < field.length; i++) {
-        if (checkInputError(field[i])) {
-          error.push(field[i])
-        }
-      }
-      const errorString = error.join(', ')
-      alert(`Campos com erro : ${errorString}`)
+      alert('Preencha os campos obrigatórios')
     } else {
-      dispatch(openPayment())
+      if (
+        checkInputError('nome') ||
+        checkInputError('endereco') ||
+        checkInputError('cidade') ||
+        checkInputError('cep') ||
+        checkInputError('numero')
+      ) {
+        for (let i = 0; i < field.length; i++) {
+          if (checkInputError(field[i])) {
+            error.push(field[i])
+          }
+        }
+        const errorString = error.join(', ')
+        alert(`Campos com erro : ${errorString}`)
+      } else {
+        dispatch(openPayment())
+        error = []
+      }
     }
   }
 
@@ -76,23 +93,40 @@ const Order = () => {
 
   const abrirOrder = () => {
     const field = ['cardName', 'cardNumber', 'cvv', 'month', 'year']
-    const error: string[] = []
+    let error: string[] = []
+    const carNameInput = document.getElementById('cardName') as HTMLInputElement
+    const cardNumberInput = document.getElementById(
+      'cardNumber'
+    ) as HTMLInputElement
+    const cvvInput = document.getElementById('cvv') as HTMLInputElement
+    const monthInput = document.getElementById('month') as HTMLInputElement
+    const yearInput = document.getElementById('year') as HTMLInputElement
     if (
-      checkInputError('cardName') ||
-      checkInputError('cardNumber') ||
-      checkInputError('cvv') ||
-      checkInputError('month') ||
-      checkInputError('year')
+      cardNumberInput.value === '' ||
+      cvvInput.value === '' ||
+      monthInput.value === '' ||
+      yearInput.value === ''
     ) {
-      for (let i = 0; i < field.length; i++) {
-        if (checkInputError(field[i])) {
-          error.push(field[i])
-        }
-      }
-      const errorString = error.join(', ')
-      alert(`Campos com erro : ${errorString}`)
+      alert('Preencha os campos obrigatórios')
     } else {
-      dispatch(openOrder())
+      if (
+        checkInputError('cardName') ||
+        checkInputError('cardNumber') ||
+        checkInputError('cvv') ||
+        checkInputError('month') ||
+        checkInputError('year')
+      ) {
+        for (let i = 0; i < field.length; i++) {
+          if (checkInputError(field[i])) {
+            error.push(field[i])
+          }
+        }
+        const errorString = error.join(', ')
+        alert(`Campos com erro : ${errorString}`)
+      } else {
+        dispatch(openOrder())
+        error = []
+      }
     }
   }
 
