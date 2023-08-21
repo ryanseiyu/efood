@@ -94,7 +94,9 @@ const Order = () => {
   const abrirOrder = () => {
     const field = ['cardName', 'cardNumber', 'cvv', 'month', 'year']
     let error: string[] = []
-    const carNameInput = document.getElementById('cardName') as HTMLInputElement
+    const cardNameInput = document.getElementById(
+      'cardName'
+    ) as HTMLInputElement
     const cardNumberInput = document.getElementById(
       'cardNumber'
     ) as HTMLInputElement
@@ -102,6 +104,7 @@ const Order = () => {
     const monthInput = document.getElementById('month') as HTMLInputElement
     const yearInput = document.getElementById('year') as HTMLInputElement
     if (
+      cardNameInput.value === '' ||
       cardNumberInput.value === '' ||
       cvvInput.value === '' ||
       monthInput.value === '' ||

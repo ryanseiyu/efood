@@ -113,7 +113,7 @@ export const ModalContainer = styled.div`
   @media (max-width: ${breakpoints.desktop}) {
     flex-direction: column;
     width: 90%;
-    height: fit-content;
+    height: auto;
   }
 `
 
