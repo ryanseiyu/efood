@@ -1,6 +1,7 @@
 import Restaurants from '../Restaurant'
 import { ContainerRestaurant, List } from './style'
 import { RestaurantType } from '../../pages/Home'
+import Loader from '../Loader'
 
 export type Props = {
   title: string
@@ -25,7 +26,7 @@ const RestaurantsList = ({ restaurants }: Props) => {
   }
 
   if (!restaurants) {
-    return <div>Carregando...</div>
+    return <Loader />
   }
 
   return (

@@ -4,7 +4,6 @@ import { cores } from '../../styles'
 export const Container = styled.div`
   border-radius: 0;
   background-color: transparent;
-  border: 1px solid ${cores.cinza};
   padding: 0;
   color: ${cores.label};
   margin-bottom: 8px;

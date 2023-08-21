@@ -2,6 +2,7 @@ import ProductsList from '../../components/ProductsList'
 import Header from '../../components/Header'
 import { useParams } from 'react-router-dom'
 import { useGetMenuQuery, useGetRestaurantIdQuery } from '../../services/api'
+import Loader from '../../components/Loader'
 
 export type MenuItemsType = {
   foto: string
@@ -37,7 +38,7 @@ const MenuPage = () => {
   // }, [id])
 
   if (!menuState || !restaurantState) {
-    return <h3>Carregando...</h3>
+    return <Loader />
   }
 
   return (

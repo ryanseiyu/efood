@@ -11,6 +11,7 @@ import {
   RestaurantDiv,
   HeaderBarContainer
 } from './styles'
+import Loader from '../Loader'
 import logo from '../../assets/images/logo.svg'
 import vector from '../../assets/images/Vector.png'
 import { MenuType } from '../../pages/MenuPage'
@@ -28,6 +29,7 @@ const Header = ({ type, restaurant }: Props) => {
   const { items } = useSelector((state: RootReducer) => state.cart)
 
   const openCart = () => {
+    if (items.length === 0) return alert('Seu carrinho está vazio')
     dispatch(open())
   }
 
@@ -46,7 +48,7 @@ const Header = ({ type, restaurant }: Props) => {
     )
   } else {
     if (!restaurant) {
-      return <h3>Carregando...</h3>
+      return <Loader />
     }
 
     return (

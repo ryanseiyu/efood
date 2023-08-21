@@ -3,6 +3,7 @@ import RestaurantsList from '../../components/RestaurantsList'
 
 import Header from '../../components/Header'
 import { MenuItemsType } from '../MenuPage'
+import Loader from '../../components/Loader'
 
 export type RestaurantType = {
   infos: string[]
@@ -17,7 +18,7 @@ export type RestaurantType = {
 }
 
 const Home = () => {
-  const { data: restaurantesState, isLoading } = useGetRestaurantsQuery()
+  const { data: restaurantesState } = useGetRestaurantsQuery()
 
   if (restaurantesState) {
     return (
@@ -27,7 +28,7 @@ const Home = () => {
       </>
     )
   }
-  return <div>Carregando...</div>
+  return <Loader />
 }
 
 export default Home
